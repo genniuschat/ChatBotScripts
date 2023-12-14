@@ -42,7 +42,7 @@ const styleElement = document.createElement('style');
           border-radius: 50%;
           width: 3rem;
           height: 3rem;
-          object-fit: cover; /* Adiciona o efeito object-fit: cover para a imagem */
+          object-fit: cover;
         }
       `;
       document.head.appendChild(styleElement);
@@ -75,14 +75,18 @@ const styleElement = document.createElement('style');
             if (windowWidth < 450) {
               button.src = 'https://i.ibb.co/NS4DSH8/CHAT-ABERTO-MOBILE.png';
               buttonContainer.style.top = '1rem';
+              button.style.top = '1rem';
             } else {
               buttonContainer.style.bottom = '1rem';
+              button.style.bottom = '1rem';
             }
           } else {
             iframe.style.display = 'none';
             button.style.display = 'block';
             buttonContainer.style.bottom = '1rem';
             buttonContainer.style.top = '';
+            button.style.bottom = '1rem';
+            button.style.top = '';
             button.src = 'https://i.ibb.co/N3pnhTs/CHAT-FECHADO.png';
           }
         }
