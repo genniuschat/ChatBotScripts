@@ -1,5 +1,5 @@
 const styleElement = document.createElement('style');
-styleElement.innerHTML = `
+      styleElement.innerHTML = `
   #iframeBotGennius {
     width: 26rem;
     height: 80vh;
@@ -32,17 +32,19 @@ styleElement.innerHTML = `
     border-radius: 50%;
     width: 3rem;
     height: 3rem;
-    transition: transform 0.3s ease-in-out; /* Add transition property for smooth zoom effect */
+    overflow: hidden;
+    transition: transform 0.1s ease-in-out; 
+    transform-origin: center center; 
   }
 
   #iframeButtonBotGennius:hover {
-    transform: scale(1.1); /* Zoom in by 10% on hover */
+    transform: scale(1.2) translate(0%, 0%); 
   }
 
   #chatButton {
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
     z-index: 1050;
     border-radius: 50%;
     width: 3rem;
@@ -50,49 +52,48 @@ styleElement.innerHTML = `
     object-fit: cover;
   }
 `;
-document.head.appendChild(styleElement);
+      document.head.appendChild(styleElement);
 
-document.addEventListener('DOMContentLoaded', function () {
-  const chatBotEndpoint = document.getElementById('chatbotScript').getAttribute('chatBotEndpoint');
+      document.addEventListener('DOMContentLoaded', function () {
+        const chatBotEndpoint = document.getElementById('chatbotScript').getAttribute('chatBotEndpoint');
 
-  document.getElementById('iframeBotGennius').src = chatBotEndpoint;
+        document.getElementById('iframeBotGennius').src = chatBotEndpoint;
 
-  const buttonElement = document.createElement('button');
-  buttonElement.setAttribute('id', 'iframeButtonBotGennius');
-  buttonElement.setAttribute('style', 'position: fixed; bottom: 1rem; right: 1rem; z-index: 1050; border-radius: 50%; width: 3rem; height: 3rem;');
-  buttonElement.innerHTML = '<img src="https://i.ibb.co/N3pnhTs/CHAT-FECHADO.png" id="chatButton" alt="chat-button" />';
-  document.body.appendChild(buttonElement);
+        const buttonElement = document.createElement('button');
+        buttonElement.setAttribute('id', 'iframeButtonBotGennius');
+        buttonElement.setAttribute('style', 'position: fixed; bottom: 1rem; right: 1rem; z-index: 1050; border-radius: 50%; width: 3rem; height: 3rem;');
+        buttonElement.innerHTML = '<img src="https://i.ibb.co/N3pnhTs/CHAT-FECHADO.png" id="chatButton" alt="chat-button" />';
+        document.body.appendChild(buttonElement);
 
-  buttonElement.addEventListener('click', toggleIframe);
+        buttonElement.addEventListener('click', toggleIframe);
 
-  function toggleIframe() {
-    var iframe = document.getElementById('iframeBotGennius');
-    var button = document.getElementById('chatButton');
-    var buttonContainer = document.getElementById('iframeButtonBotGennius');
+        function toggleIframe() {
+          var iframe = document.getElementById('iframeBotGennius');
+          var button = document.getElementById('chatButton');
+          var buttonContainer = document.getElementById('iframeButtonBotGennius');
 
-    if (iframe.style.display === 'none' || iframe.style.display === '') {
-      iframe.style.display = 'block';
-      button.style.display = 'block';
-      button.src = 'https://i.ibb.co/qkxJ9PY/CHAT-ABERTO.png';
+          if (iframe.style.display === 'none' || iframe.style.display === '') {
+            iframe.style.display = 'block';
+            button.style.display = 'block';
+            button.src = 'https://i.ibb.co/qkxJ9PY/CHAT-ABERTO.png';
 
-      var windowWidth = window.innerWidth;
+            var windowWidth = window.innerWidth;
 
-      if (windowWidth < 450) {
-        button.src = 'https://i.ibb.co/NS4DSH8/CHAT-ABERTO-MOBILE.png';
-        buttonContainer.style.top = '1rem';
-        button.style.top = '1rem';
-      } else {
-        buttonContainer.style.bottom = '1rem';
-        button.style.bottom = '1rem';
-      }
-    } else {
-      iframe.style.display = 'none';
-      button.style.display = 'block';
-      buttonContainer.style.bottom = '1rem';
-      buttonContainer.style.top = '';
-      button.style.bottom = '1rem';
-      button.style.top = '';
-      button.src = 'https://i.ibb.co/N3pnhTs/CHAT-FECHADO.png';
-    }
-  }
-});
+            if (windowWidth < 450) {
+              button.src = 'https://i.ibb.co/NS4DSH8/CHAT-ABERTO-MOBILE.png';
+              buttonContainer.style.top = '1rem';
+
+            } else {
+              buttonContainer.style.bottom = '1rem';
+
+            }
+          } else {
+            iframe.style.display = 'none';
+            button.style.display = 'block';
+            buttonContainer.style.bottom = '1rem';
+            buttonContainer.style.top = '';
+
+            button.src = 'https://i.ibb.co/N3pnhTs/CHAT-FECHADO.png';
+          }
+        }
+      });
