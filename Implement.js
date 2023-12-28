@@ -80,7 +80,7 @@ const styleElement = document.createElement('style');
             var windowWidth = window.innerWidth;
   
             if (windowWidth < 450) {
-              button.src = 'https://i.ibb.co/NS4DSH8/CHAT-ABERTO-MOBILE.png';
+              button.src = 'https://i.ibb.co/qkxJ9PY/CHAT-ABERTO.png';
               buttonContainer.style.top = '1rem';
   
             } else {
