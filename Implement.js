@@ -109,28 +109,23 @@ const styleElement = document.createElement('style');
   
         const chatBotEndpointBotId = chatBotEndpoint.split('/').pop();
   
-        console.log("chatBotEndpointBotId", chatBotEndpointBotId)
-        console.log("end", chatBotEndpoint)
         var iframe = document.getElementById('iframeBotGennius');
         iframe.onload = function () {
-          // Token de ID de chat que você deseja enviar
+
           var chatTokenB = localStorage.getItem('threadId');
-          // Envia o token para a outra janela
+
           iframe.contentWindow.postMessage({ type: 'chatToken', token: chatTokenB, idBot: chatBotEndpointBotId }, chatBotEndpoint);
         }
   
-        // Adiciona um ouvinte para o evento de mensagem
+
         window.addEventListener('message', function (event) {
-          // Verifica se a mensagem é do tipo 'chatToken'
+
           if (event.data.type === 'chatTokenResponse') {
-            // Obtém o token de ID de chat da mensagem
+
             var chatToken = event.data.token;
             localStorage.setItem('threadId', event.data.token)
-            // Faça o que quiser com o token aqui
-            console.log('Token de ID de chat recebido -iframe-:', chatToken);
-          } else {
-            console.log('recebi nada-iframe-')
-          }
+
+          } 
   
         });
       });
